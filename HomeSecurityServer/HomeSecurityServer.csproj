@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-HomeSecurityClient-8F3E97DF-28D6-4697-96E3-CC211B18456E</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Protos\enums.proto" />
+    <None Remove="Protos\Notification.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.12.3" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.29.0" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.29.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.30.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.4" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\enums.proto" GrpcServices="None" ProtoRoot="Protos\">
+      <ProtoRoot>Protos\</ProtoRoot>
+    </Protobuf>
+    <Protobuf Include="Protos\Notification.proto" GrpcServices="Server" ProtoRoot="Protos\">
+      <ProtoRoot>Protos\</ProtoRoot>
+    </Protobuf>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option csharp_namespace = "HomeSecurityServer.Services";
+
+enum NotificationStatus{
+	FAILED = 0;
+	DELIVERED = 1;
+	PENDING = 2;
+}

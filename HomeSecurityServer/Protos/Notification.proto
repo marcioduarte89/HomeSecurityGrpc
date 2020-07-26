@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "HomeSecurityServer.Services";
+import "enums.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service NotificationDispatcherService {
+	rpc AddNotification (NotificationMessage) returns (StatusMessage);
+	rpc SendDiagnostics (stream DeviceStatus) returns (stream StatusMessage);
+	rpc CreateToken (TokenRequest) returns (TokenResponse);
+}
+
+message TokenRequest{
+	string username = 1;
+	string password = 2;
+}
+
+message TokenResponse {
+	string token = 1;
+	google.protobuf.Timestamp expiration = 2;
+	bool success = 3;
+}
+
+message DeviceStatus{
+	bool isActive = 1; 
+	google.protobuf.Timestamp statusTime = 2;
+	int32 deviceId = 3;
+}
+
+message NotificationMessage {
+	int32 deviceId = 1;
+	int32 coordinateX = 2;
+	int32 coordinateY = 3;	
+	string notification = 5;
+	google.protobuf.Timestamp notificationTime = 6;
+	reserved 4;
+	reserved "hasMotionDetectionOn"; // way of doing versioning..
+}
+
+message StatusMessage {
+	string message = 1;
+	
+}
